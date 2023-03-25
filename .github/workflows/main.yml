@@ -130,8 +130,9 @@ jobs:
           sudo systemctl start cnosdb
           dpkg -L cnosdb
           echo "---"
+          ls -l /usr/bin/cnosdb
           cd /usr/bin
-          cnosdb
+          sudo cnosdb
       - name: Create SQLancer User
         run: |
           cnosql-cli
