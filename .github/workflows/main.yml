@@ -128,17 +128,14 @@ jobs:
           sudo chown cnosdb:cnosdb /var/run/cnosdb
           sudo chmod 755 /var/run/cnosdb
           sudo systemctl start cnosdb
-          dpkg -L cnosdb
-          echo "---"
-          ls -l /usr/bin/cnosdb
           sudo chmod +x /usr/bin/cnosdb
       - name: Create SQLancer User
         run: |
           cnosdb
-          > create user sqlancer identified by 'sqlancer';
-          > create database testdb;
-          > grant all privileges on database testdb to sqlancer;
-          > exit;
+          create user sqlancer identified by 'sqlancer';
+          create database testdb;
+          grant all privileges on database testdb to sqlancer;
+          exit;
       - name: Run Tests
         run: CNOSDB_AVAILABLE=true mvn -Dtest=TestCnosDB test
 
