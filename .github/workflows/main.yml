@@ -133,10 +133,10 @@ jobs:
       - name: Create SQLancer User
         run: |
           cnosdb-cli
-          > create user sqlancer identified by 'sqlancer';
-          > create database testdb;
-          > grant all privileges on database testdb to sqlancer;
-          > exit;
+          create user sqlancer identified by 'sqlancer';
+          create database testdb;
+          grant all privileges on database testdb to sqlancer;
+          exit;
       - name: Run Tests
         run: CNOSDB_AVAILABLE=true mvn -Dtest=TestCnosDB test
 
