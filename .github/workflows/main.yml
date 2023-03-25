@@ -132,11 +132,12 @@ jobs:
           sudo chmod +x /usr/bin/cnosdb-cli
       - name: Create SQLancer User
         run: |
-          cnosdb-cli
+          sudo cnosdb run
+          cnosdb-cli <<EOF
           create user sqlancer identified by 'sqlancer';
           create database testdb;
           grant all privileges on database testdb to sqlancer;
-          exit;
+          EOF
       - name: Run Tests
         run: CNOSDB_AVAILABLE=true mvn -Dtest=TestCnosDB test
 
