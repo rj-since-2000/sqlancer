@@ -131,6 +131,7 @@ jobs:
           dpkg -L cnosdb
           echo "---"
           ls -l /usr/bin/cnosdb
+          sudo chmod +x /usr/bin/cnosdb
           cd /usr/bin
           sudo cnosdb
       - name: Create SQLancer User
