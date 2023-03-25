@@ -130,6 +130,7 @@ jobs:
           sudo systemctl start cnosdb
       - name: Create SQLancer User
         run: |
+          export PATH=$PATH:/usr/lib/cnosdb/
           cnosql-cli
           > create user sqlancer identified by 'sqlancer';
           > create database testdb;
