@@ -121,7 +121,7 @@ jobs:
       - name: Set up CnosDB
         run: |
           curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-          sudo source "$HOME/.cargo/env"
+          source "$HOME/.cargo/env"
           apt-get install cmake
           snap install flatbuffers
           git clone https://github.com/cnosdb/cnosdb.git && cd cnosdb
