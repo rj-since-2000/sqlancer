@@ -105,6 +105,35 @@ jobs:
           docker stop clickhouse-server
           docker rm clickhouse-server
 
+  cnosdb:
+    name: DBMS Tests (CnosDB)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Build SQLancer
+        run: mvn -B package -DskipTests=true
+      - name: Set up CnosDB
+        run: |
+          sudo apt-get update
+          wget -O cnosdb.deb http://cnosdb-repo.chinaunicom.cn/deb/cnosdb/cnosdb-latest.deb
+          sudo dpkg -i cnosdb.deb
+          sudo systemctl start cnosdb
+          sudo systemctl status cnosdb
+      - name: Create SQLancer User
+        run: |
+          cnosql-cli
+          > create user sqlancer identified by 'sqlancer';
+          > create database testdb;
+          > grant all privileges on database testdb to sqlancer;
+          > exit;
+      - name: Run Tests
+        run: CNOSDB_AVAILABLE=true mvn -Dtest=TestCnosDB test
 
 
   cockroachdb:
