@@ -128,6 +128,7 @@ jobs:
           sudo chown cnosdb:cnosdb /var/run/cnosdb
           sudo chmod 755 /var/run/cnosdb
           sudo systemctl start cnosdb
+          sudo dpkg -L cnosdb
           echo "-----"
           ls
           cd ~
