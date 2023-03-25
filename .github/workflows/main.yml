@@ -137,6 +137,7 @@ jobs:
           ls
           cd /usr/lib/cnosdb/scripts
           ls
+          cnosql-cli
       - name: Create SQLancer User
         run: |
           cnosql-cli
