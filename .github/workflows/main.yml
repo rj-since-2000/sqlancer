@@ -123,6 +123,9 @@ jobs:
           sudo apt-get update
           wget https://dl.cnosdb.com/packages/deb/cnosdb_2.2.0-1_amd64.deb
           sudo dpkg -i cnosdb_2.2.0-1_amd64.deb
+          sudo mkdir /var/run/cnosdb
+          sudo chown cnosdb:cnosdb /var/run/cnosdb
+          sudo chmod 755 /var/run/cnosdb
           sudo systemctl start cnosdb
           sudo systemctl status cnosdb
       - name: Create SQLancer User
