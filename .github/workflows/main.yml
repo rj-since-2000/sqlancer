@@ -135,7 +135,6 @@ jobs:
       - name: Run Tests
         run: CNOSDB_AVAILABLE=true mvn -Dtest=TestCnosDB test
 
-
   cockroachdb:
     name: DBMS Tests (CockroachDB)
     runs-on: ubuntu-latest
