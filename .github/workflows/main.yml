@@ -120,7 +120,7 @@ jobs:
         run: mvn -B package -DskipTests=true
       - name: Set up CnosDB
         run: |
-          docker run --name cnosdb -d --env cpu=2 --env memory=4 -p 31007:31007 -it cnosdb/cnosdb:v2.0.1
+          docker run --name cnosdb -d --env cpu=2 --env memory=4 -p 31007:31007 cnosdb/cnosdb:v2.0.1
           docker exec -it cnosdb sh
       - name: Create SQLancer User
         run: |
