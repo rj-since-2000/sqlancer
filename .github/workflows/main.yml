@@ -128,8 +128,7 @@ jobs:
           sudo chown cnosdb:cnosdb /var/run/cnosdb
           sudo chmod 755 /var/run/cnosdb
           sudo systemctl start cnosdb
-          find /path/to/cnosdb -type f -executable
-          cnosql-cli
+          dpkg -L cnosdb
       - name: Create SQLancer User
         run: |
           cnosql-cli
