@@ -120,24 +120,13 @@ jobs:
         run: mvn -B package -DskipTests=true
       - name: Set up CnosDB
         run: |
-          sudo apt-get update
-          wget https://dl.cnosdb.com/packages/deb/cnosdb_2.2.0-1_amd64.deb
-          sudo dpkg -i cnosdb_2.2.0-1_amd64.deb
-          sudo chmod +x /usr/lib/cnosdb/scripts/cnosdb-systemd-start.sh
-          sudo mkdir /var/run/cnosdb
-          sudo chown cnosdb:cnosdb /var/run/cnosdb
-          sudo chmod 755 /var/run/cnosdb
-          sudo systemctl start cnosdb
-          ls
-          cd ~
-          echo "-----"
-          ls
-          cd /usr/lib/cnosdb
-          echo "-----"
-          ls
-          cd /usr/lib/cnosdb/scripts
-          ls
-          cnosql-cli
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+          apt-get install cmake
+          snap install flatbuffers
+          git clone https://github.com/cnosdb/cnosdb.git && cd cnosdb
+          cargo build
+          cargo run -- run --cpu 4 --memory 64
+          cargo run --package client --bin client
       - name: Create SQLancer User
         run: |
           cnosql-cli
