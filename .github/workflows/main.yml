@@ -120,7 +120,7 @@ jobs:
         run: mvn -B package -DskipTests=true
       - name: Set up CnosDB
         run: |
-          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
           apt-get install cmake
           snap install flatbuffers
           git clone https://github.com/cnosdb/cnosdb.git && cd cnosdb
