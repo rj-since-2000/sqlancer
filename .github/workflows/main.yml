@@ -130,8 +130,10 @@ jobs:
           sudo systemctl start cnosdb
           ls
           cd ~
+          echo "-----"
           ls
           cd /usr/lib/cnosdb
+          echo "-----"
           ls
       - name: Create SQLancer User
         run: |
